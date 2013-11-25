@@ -1,0 +1,13 @@
+﻿<Window x:Class="Igooana.Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="484.395" Width="535.866">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="10*"/>
+      <RowDefinition Height="90*"/>
+    </Grid.RowDefinitions>
+    <Button Click="OnAuthenticate">Authenticate</Button>
+
+  </Grid>
+</Window>
