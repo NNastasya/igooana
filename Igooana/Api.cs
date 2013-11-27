@@ -1,81 +1,44 @@
-﻿using System;
-using System.Net;
-using System.Diagnostics;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Threading.Tasks;
 
 namespace Igooana {
-  public class Api {
+  public class Api : Igooana.IApi {
 
-    private Api() { }
+    private readonly IConnection connection;
+    private readonly IAuth auth;
+    private string token;
 
-    public static Action<String> Authenticate(string clientId, string clientSecret, Action<Uri> startCallback) {
-      var auth = new Auth(clientId, clientSecret);
-      startCallback(auth.BuildAuthUri());
-      return new Action<String>(auth.AuthContinueCallback);
+    internal Api(IConnection connection, IAuth auth) {
+      this.connection = connection;
+      this.auth = auth;
     }
-    //private DateTime _start;
-    //private DateTime _end;
-    //private Metric _metric;
-    //private Dimension _dimension;
 
-    //#region Properties
+    public Api(string clientId, string clientSecret)
+      : this(new Connection(), new Auth(clientId, clientSecret)) {
+    }
 
-    //private Metric CurrentMetric {
-    //  get {
-    //    if (_metric == null) _metric = Metric.Empty;
-    //    return _metric;
-    //  }
-    //}
+    public Uri AuthenticateUri {
+      get {
+        return auth.BuildAuthUri();
+      }
+    }
 
-    //private Dimension CurrentDimension {
-    //  get {
-    //    if (_dimension == null) _dimension = Dimension.Empty;
-    //    return _dimension;
-    //  }
-    //}
-
-    //#endregion
-
-    //#region ctor
-
-    //private Api(DateTime start, DateTime end) {
-    //  _start = start;
-    //  _end = end;
-    //}
-
-    //#endregion
-
-
-    //#region Methods
-
-    //public static Api Between(DateTime start, DateTime end) {
-    //  return new Api(start, end);
-    //}
-
-
-    //public Api Metrics(Func<Metric, Metric> func) {
-    //  _metric = func(CurrentMetric);
-    //  return this;
-    //}
-
-    //public Api Dimensions(Func<Dimension, Dimension> func) {
-    //  _dimension = func(CurrentDimension);
-    //  return this;
-    //}
-
-    //public void GetDashboardDataAsync(Action<DashboardData> onComplete) {
-    //  string dashboardUrl = BuildDashboardUrl();
-    //  _reportingApi.ExecuteRawRequestAsync(dashboardUrl, responseBody => {
-    //    var dashboardData = DashboardData.Parse(responseBody);
-    //    onComplete(dashboardData);
-    //  });
-    //}
-
-    //private string BuildDashboardUrl() {
-    //  string ids = HttpUtility.HtmlEncode(string.Format("ga:{0}", _reportingApi.ProfileId));
-    //  string metrics = (Metric.Visits + Metric.Visitors + Metric.PageViews + Metric.PageViewsPerVisit + Metric.AverageTimeOnSite + Metric.PercentNewVisits).HtmlEncoded;
-    //  string url = string.Format("{0}?ids={1}&start-date={2}&end-date={3}&metrics={4}", _reportingApi.BaseUrl, ids, _start.ToString("yyyy-MM-dd"), _end.ToString("yyyy-MM-dd"), metrics);
-    //  return url;
-    //}
-
+    /// <summary>
+    /// Performs OAuth2 authentication, given the browser uri 
+    /// </summary>
+    /// <param name="uri">Current browser uri</param>
+    /// <exception>AccessRefusedException when user clicks `Cancel` on access confirmation page</exception>
+    /// <returns></returns>
+    public async Task<bool> Authenticate(Uri uri) {
+      if (uri.Host == "localhost") {
+        var tokenParams = auth.BuildTokenParams(uri);
+        var response = await connection.PostStringAsync(auth.BuildTokenUri(), tokenParams);
+        // TODO: move json stuff somewhere else
+        token = JObject.Parse(response)["access_token"].ToString();
+        return !String.IsNullOrEmpty(token);
+      }
+      else return false;
+    }
   }
 }

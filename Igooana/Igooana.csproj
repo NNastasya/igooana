@@ -37,12 +37,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessRefusedException.cs" />
     <Compile Include="Api.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Dimension.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="IApi.cs" />
+    <Compile Include="IAuth.cs" />
+    <Compile Include="IConnection.cs" />
     <Compile Include="Metric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
