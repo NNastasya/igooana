@@ -40,5 +40,9 @@ namespace Igooana {
       }
       else return false;
     }
+
+    public async Task<object> Execute(Query query) {
+      return null;
+    }
   }
 }

@@ -5,12 +5,12 @@ namespace Igooana {
   public class Metric {
     private readonly string _metricString;
     public static readonly Metric Empty = new Metric("");
-    public static readonly Metric Visits = new Metric("ga:visits");
-    public static readonly Metric Visitors = new Metric("ga:visitors");
-    public static readonly Metric PageViewsPerVisit = new Metric("ga:pageViewsPerVisit");
-    public static readonly Metric AverageTimeOnSite = new Metric("ga:avgTimeOnSite");
-    public static readonly Metric PercentNewVisits = new Metric("ga:percentNewVisits");
-    public static readonly Metric PageViews = new Metric("ga:pageviews");
+    public readonly Metric Visits = new Metric("ga:visits");
+    public readonly Metric Visitors = new Metric("ga:visitors");
+    public readonly Metric PageViewsPerVisit = new Metric("ga:pageViewsPerVisit");
+    public readonly Metric AverageTimeOnSite = new Metric("ga:avgTimeOnSite");
+    public readonly Metric PercentNewVisits = new Metric("ga:percentNewVisits");
+    public readonly Metric PageViews = new Metric("ga:pageviews");
 
     protected Metric(string metricString) {
       _metricString = metricString;
@@ -43,13 +43,5 @@ namespace Igooana {
     public override int GetHashCode() {
       return _metricString.GetHashCode();
     }
-
-
-    //internal string HtmlEncoded {
-    //  get {
-    //    return HttpUtility.HtmlEncode(_metricString);
-    //  }
-    //}
-
   }
 }

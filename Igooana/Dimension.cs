@@ -4,10 +4,10 @@
 namespace Igooana {
   public class Dimension {
     private readonly string _dimensionString;
-    public static readonly Dimension Empty = new Dimension("");
-    public static readonly Dimension Browser = new Dimension("ga:browser");
-    public static readonly Dimension Date = new Dimension("ga:date");
-    public static readonly Dimension PagePath = new Dimension("ga:pagepath");
+    public  static readonly Dimension Empty = new Dimension("");
+    public readonly Dimension Browser = new Dimension("ga:browser");
+    public readonly Dimension Date = new Dimension("ga:date");
+    public readonly Dimension PagePath = new Dimension("ga:pagepath");
 
     protected Dimension(string dimensionString) {
       _dimensionString = dimensionString;
