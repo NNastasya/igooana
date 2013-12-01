@@ -4,10 +4,14 @@
         Title="MainWindow" Height="484.395" Width="535.866">
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="10*"/>
-      <RowDefinition Height="90*"/>
+      <RowDefinition Height="8*"/>
+      <RowDefinition Height="8*"/>
+      <RowDefinition Height="84*"/>
     </Grid.RowDefinitions>
     <Button Click="OnAuthenticate">Authenticate</Button>
-
+    <StackPanel Grid.Row="1" Orientation="Horizontal">
+      <Label>Profile: </Label>
+      <ComboBox></ComboBox>
+    </StackPanel>
   </Grid>
 </Window>

@@ -40,6 +40,9 @@
     <Compile Include="AccessRefusedException.cs" />
     <Compile Include="Api.cs" />
     <Compile Include="Auth.cs" />
+    <Compile Include="Extensions\JsonExtensions.cs" />
+    <Compile Include="JsonResult.cs" />
+    <Compile Include="Profile.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Dimension.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
@@ -47,6 +50,7 @@
     <Compile Include="IApi.cs" />
     <Compile Include="IAuth.cs" />
     <Compile Include="IConnection.cs" />
+    <Compile Include="Management.cs" />
     <Compile Include="Metric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query.cs" />

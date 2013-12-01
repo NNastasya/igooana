@@ -18,6 +18,10 @@ namespace Igooana.Demo {
       Loaded += OnLoaded;
     }
 
+    public Api Api {
+      get { return api; }
+    }
+
     void OnLoaded(object sender, RoutedEventArgs e) {
       api = new Api(clientId, clientSecret);
       Browser.Navigate(api.AuthenticateUri);

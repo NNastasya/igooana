@@ -7,6 +7,7 @@ namespace Igooana {
 
     private readonly IConnection connection;
     private readonly IAuth auth;
+    private Management management;
     private string token;
 
     internal Api(IConnection connection, IAuth auth) {
@@ -21,6 +22,15 @@ namespace Igooana {
     public Uri AuthenticateUri {
       get {
         return auth.BuildAuthUri();
+      }
+    }
+
+    public Management Management {
+      get {
+        if (String.IsNullOrEmpty(token)) {
+          throw new InvalidOperationException("You must authenticate before using management API");
+        }
+        return management ?? (management = new Management(connection, token));
       }
     }
 
@@ -41,7 +51,7 @@ namespace Igooana {
       else return false;
     }
 
-    public async Task<object> Execute(Query query) {
+    public Task<dynamic> Execute(Query query) {
       return null;
     }
   }
