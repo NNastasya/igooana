@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Igooana {
-  internal interface IConnection {
+  public interface IConnection {
     Task<String> PostStringAsync(Uri uri, IDictionary<String, String> content);
     Task<String> GetStringAsync(Uri uri, string authenticationToken = null);
   }
