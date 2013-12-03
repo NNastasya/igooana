@@ -9,9 +9,14 @@
       <RowDefinition Height="84*"/>
     </Grid.RowDefinitions>
     <Button Click="OnAuthenticate">Authenticate</Button>
-    <StackPanel Grid.Row="1" Orientation="Horizontal">
+    <StackPanel Grid.Row="1" Orientation="Horizontal" >
       <Label>Profile: </Label>
-      <ComboBox></ComboBox>
+      <ComboBox Width="200" ItemsSource="{Binding Path=Profiles}" 
+                IsSynchronizedWithCurrentItem="true"
+                DisplayMemberPath="Name" 
+                SelectedValuePath="Id"
+                SelectedItem="{Binding Path=ProfileId}">
+      </ComboBox>
     </StackPanel>
   </Grid>
 </Window>

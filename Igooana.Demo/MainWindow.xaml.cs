@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using Igooana.Demo.Extensions;
 
 namespace Igooana.Demo {
   /// <summary>
@@ -6,15 +8,19 @@ namespace Igooana.Demo {
   /// </summary>
   public partial class MainWindow : Window {
     private Api api;
+    private readonly ViewModel viewModel;
     public MainWindow() {
       InitializeComponent();
+      viewModel = new ViewModel();
+      DataContext = viewModel;
     }
 
     private async void OnAuthenticate(object sender, RoutedEventArgs e) {
       var auth = new Auth();
       if (auth.ShowDialog().GetValueOrDefault()) {
         api = auth.Api;
-        var profiles = await api.Management.GetProfilesAsync();
+        viewModel.Authenticated = true;
+        viewModel.Profiles.AddMany(await api.Management.GetProfilesAsync());
       }
     }
   }
