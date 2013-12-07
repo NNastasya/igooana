@@ -27,7 +27,11 @@ namespace Igooana.Demo {
 
     private async void Button_Click(object sender, RoutedEventArgs e) {
       try {
-        var query = Query.For(74167085, DateTime.Now.AddDays(-31), DateTime.Now).WithMetrics(Metric.Visitors);
+        var dims = Dimension.Browser + Dimension.Date;
+        var query = Query
+          .For(74167085, DateTime.Now.AddDays(-31), DateTime.Now)
+          .WithMetrics(Metric.Visitors + Metric.PageViews + Metric.PageViewsPerVisit + Metric.Visits + Metric.PercentNewVisits)
+          .WithDimensions(dims);
         var result = await api.Execute(query);
       }
       catch (ConnectionException ex) {

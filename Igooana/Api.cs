@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Igooana.Extensions;
 using Newtonsoft.Json.Linq;
+using System.Dynamic;
 
 namespace Igooana {
   public class Api : Igooana.IApi {
