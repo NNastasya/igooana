@@ -1,12 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+﻿
+using Xunit;
 namespace Igooana.Tests {
-  [TestClass]
   public class ApiTests {
-    [TestMethod]
+    [Fact]
     public void ItCreatesNewApiInstanceWithConstructor() {
       var api = new Api("fake", "fake");
-      Assert.IsNotNull(api);
+      Assert.NotNull(api);
     }
   }
 }

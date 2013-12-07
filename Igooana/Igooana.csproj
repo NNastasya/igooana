@@ -40,6 +40,7 @@
     <Compile Include="AccessRefusedException.cs" />
     <Compile Include="Api.cs" />
     <Compile Include="Auth.cs" />
+    <Compile Include="ConnectionException.cs" />
     <Compile Include="Extensions\JsonExtensions.cs" />
     <Compile Include="JsonResult.cs" />
     <Compile Include="Profile.cs" />

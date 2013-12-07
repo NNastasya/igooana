@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using Igooana.Demo.Extensions;
+using System;
 
 namespace Igooana.Demo {
   /// <summary>
@@ -21,6 +22,16 @@ namespace Igooana.Demo {
         api = auth.Api;
         viewModel.Authenticated = true;
         viewModel.Profiles.AddMany(await api.Management.GetProfilesAsync());
+      }
+    }
+
+    private async void Button_Click(object sender, RoutedEventArgs e) {
+      try {
+        var query = Query.For(74167085, DateTime.Now.AddDays(-31), DateTime.Now).WithMetrics(Metric.Visitors);
+        var result = await api.Execute(query);
+      }
+      catch (ConnectionException ex) {
+        MessageBox.Show(ex.DetailedMessage);
       }
     }
   }

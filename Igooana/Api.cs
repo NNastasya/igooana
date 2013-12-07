@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Igooana.Extensions;
+using Newtonsoft.Json.Linq;
 
 namespace Igooana {
   public class Api : Igooana.IApi {
-
+    private const string baseUrl = "https://www.googleapis.com";
+    private const string basePath = "/analytics/v3/data/ga";
     private readonly IConnection connection;
     private readonly IAuth auth;
     private Management management;
@@ -51,8 +53,12 @@ namespace Igooana {
       else return false;
     }
 
-    public Task<dynamic> Execute(Query query) {
-      return null;
+    public async Task<dynamic> Execute(Query query) {
+      var builder = new UriBuilder(baseUrl);
+      builder.Path = basePath;
+      builder.Query = query.ToString();
+      var jsonResponse = await connection.GetStringAsync(builder.Uri, token);
+      return await jsonResponse.ToObjectAsync<dynamic>();
     }
   }
 }

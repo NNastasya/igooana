@@ -17,6 +17,7 @@
                 SelectedValuePath="Id"
                 SelectedItem="{Binding Path=ProfileId}">
       </ComboBox>
+      <Button Click="Button_Click">Execute</Button>
     </StackPanel>
   </Grid>
 </Window>

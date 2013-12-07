@@ -1,13 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
+﻿using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace Igooana.Tests {
-  [TestClass]
   public class ManagementTests {
-    [TestMethod]
+    [Fact]
     public void ItReturnsProfiles() {
       var json = Resources.ManagementProfilesJson;
       var connection = Substitute.For<IConnection>();
@@ -15,8 +14,8 @@ namespace Igooana.Tests {
         .Returns(Task.FromResult(json));
       var management = new Management(connection, null);
       var profiles = management.GetProfilesAsync().Result;
-      Assert.IsNotNull(profiles);
-      Assert.IsInstanceOfType(profiles, typeof(IEnumerable<Profile>));
+      Assert.NotNull(profiles);
+      Assert.IsAssignableFrom<IEnumerable<Profile>>(profiles);
     }
   }
 }

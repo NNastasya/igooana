@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Igooana {
-  internal class Connection : IConnection{
+  internal class Connection : IConnection {
 
     #region Methods
 
@@ -23,7 +23,12 @@ namespace Igooana {
           http.DefaultRequestHeaders.Add("Authorization", "Bearer {0}".FormatWith(accessToken));
         }
         var response = await http.GetAsync(uri);
-        return await response.Content.ReadAsStringAsync();
+        if (response.IsSuccessStatusCode) {
+          return await response.Content.ReadAsStringAsync();
+        }
+        else {
+          throw new ConnectionException(response);
+        }
       }
     }
 
