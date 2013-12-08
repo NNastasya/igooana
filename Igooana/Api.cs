@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Igooana.Extensions;
+﻿using Igooana.Extensions;
 using Newtonsoft.Json.Linq;
-using System.Dynamic;
+using System;
+using System.Threading.Tasks;
 
 namespace Igooana {
   public class Api : Igooana.IApi {
@@ -54,12 +53,12 @@ namespace Igooana {
       else return false;
     }
 
-    public async Task<dynamic> Execute(Query query) {
+    public async Task<Response> Execute(Query query) {
       var builder = new UriBuilder(baseUrl);
       builder.Path = basePath;
       builder.Query = query.ToString();
-      var jsonResponse = await connection.GetStringAsync(builder.Uri, token);
-      return await jsonResponse.ToObjectAsync<dynamic>();
+      var json = await connection.GetStringAsync(builder.Uri, token);
+      return await Response.Parse(json);
     }
   }
 }

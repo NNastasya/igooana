@@ -1,4 +1,5 @@
 ﻿using Igooana.Extensions;
+using Igooana.Json.Management;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -26,8 +27,8 @@ namespace Igooana {
     public async Task<IEnumerable<Profile>> GetProfilesAsync() {
       var uri = new Uri("{0}{1}".FormatWith(baseUri, profilesPath));
       var profilesJson = await connection.GetStringAsync(uri, token);
-      var jsonResult = profilesJson.ToObject<JsonResult<Profile>>();
-      return jsonResult.items;
+      var jsonResult = profilesJson.ToObject<JsonResponse<Profile>>();
+      return jsonResult.Items;
     }
 
     #endregion
