@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Igooana {
   public class Response {
-    private Response(){}
+    private Response() { }
     public dynamic Totals { get; set; }
     public IEnumerable<dynamic> Values { get; set; }
 
@@ -25,7 +25,13 @@ namespace Igooana {
         dynamic resultValue = new ExpandoObject();
         IDictionary<string, object> resultAsDic = resultValue;
         for (int i = 0; i < x.Length; i++) {
-          resultAsDic[propertyNames[i]] = Convert.ChangeType(x[i], columnTypes[i]);
+          // Special case handling, GA tells thaat "20131122" is a string while it's a date
+          if (columnTypes[i] == typeof(string) && x[i].IsGaDate()) {
+            resultAsDic[propertyNames[i]] = DateTime.ParseExact(x[i], "yyyyMMdd", CultureInfo.InvariantCulture);
+          }
+          else {
+            resultAsDic[propertyNames[i]] = Convert.ChangeType(x[i], columnTypes[i]);
+          }
         }
         return resultValue;
       });
@@ -34,14 +40,14 @@ namespace Igooana {
     private static Type GetTypeFromAnalyticsType(string analyticsType) {
       switch (analyticsType) {
         case "INTEGER": return typeof(int);
-        case "FLOAT": 
+        case "FLOAT":
         case "PERCENT":
           return typeof(float);
         case "STRING": return typeof(string);
         default: return typeof(string);
       }
     }
-    
+
     private static string PropertizeGaColumnName(string gaColumnName) {
       var propertyChars = gaColumnName.Split(':')[1].ToCharArray();
       propertyChars[0] = Char.ToUpper(propertyChars[0]);

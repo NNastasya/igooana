@@ -24,8 +24,7 @@ Using the api requires authenticating via web browser. If you're using Xaml (WPF
 
 Code behind:
 
-```
-
+```c#
 void OnLoaded(object sender, RoutedEventArgs e) {
   // assuming you already have clientId and clientSecret
   api = new Api(clientId, clientSecret);
@@ -37,7 +36,6 @@ private async void OnNavigating(object sender, NavigatingCancelEventArgs e) {
     // You've authenticated at this point
   }
 }
-
 ```
 
 At this point you have the authenticated api reference and can start calling methods on it.
@@ -48,11 +46,37 @@ At this point you have the authenticated api reference and can start calling met
 
 #### Profiles
 
+```c#
+  var profiles = await api.Management.GetProfilesAsync();
 ```
 
-  var profiles = await api.Management.GetProfilesAsync();
-  
+### Reporting
+
+`Api` class offers a `Execute` method which accepts a `Query` and executes it.
+Constructing a `Query` is typesafe and fun. 
+Let's say you'd like to view number of visits and page views by browser for last months.
+
+```c#
+try {
+  int profileId = GetProfileId(); // this might use Api.Management to get all your profiles.
+  var query = Query
+    .For(profileId, DateTime.Now.AddDays(-31), DateTime.Now)
+    .WithMetrics(Metric.Visits + Metric.PageViews)
+    .WithDimensions(Dimension.Browser);
+  Result result = await api.Execute(query);
+  foreach(var row in result.Values){
+    Console.WriteLine("I had {0} visits with {1} page views on {2} browser", row.Visits, row.PageViews, row.Browser);
+  }
+}
+catch (ConnectionException ex) {
+  MessageBox.Show(ex.DetailedMessage);
+}
 ```
+
+What does `Api#Query` return? It's a `Igooana.Result` object, which has `Values` properties - an `IEnumerable<ExpandoObject`.
+Using `dynamic` allows to have a collection of objects with all the properties you've queried with metrics and dimensions.
+
+Moreover, all properties have their respective CLR types, not strings Google Analytics returns.
 
 This is a work in progress, PRs are welcome :)
 
