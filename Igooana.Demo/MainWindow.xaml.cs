@@ -30,7 +30,7 @@ namespace Igooana.Demo {
         var dims = Dimension.Browser + Dimension.Date;
         var query = Query
           .For(74167085, DateTime.Now.AddDays(-31), DateTime.Now)
-          .WithMetrics(Metric.Visitors + Metric.PageViews + Metric.PageViewsPerVisit + Metric.Visits + Metric.PercentNewVisits)
+          .WithMetrics(Metric.Visitors + Metric.Visits + Metric.PercentNewVisits)
           .WithDimensions(dims);
         var result = await api.Execute(query);
       }
