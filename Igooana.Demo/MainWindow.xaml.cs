@@ -27,6 +27,7 @@ namespace Igooana.Demo {
 
     private async void Button_Click(object sender, RoutedEventArgs e) {
       try {
+        
         var dims = Dimension.Browser + Dimension.Date;
         var query = Query
           .For(74167085, DateTime.Now.AddDays(-31), DateTime.Now)
