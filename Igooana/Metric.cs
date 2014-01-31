@@ -271,6 +271,167 @@ namespace Igooana {
 
     #endregion
 
+    #region Site Speed
+
+    /// <summary>
+    /// Total Page Load Time is the amount of time (in milliseconds) it takes for pages from the sample set to load, from initiation of the pageview (e.g. click on a page link) to load completion in the browser. 
+    /// </summary>
+    public static readonly Metric PageLoadTime = new Metric("ga:pageLoadTime", "Site Speed", "Total Page Load Time is the amount of time (in milliseconds) it takes for pages from the sample set to load, from initiation of the pageview (e.g. click on a page link) to load completion in the browser.");
+
+    /// <summary>
+    /// The sample set (or count) of pageviews used to calculate the average page load time.
+    /// </summary>
+    public static readonly Metric PageLoadSample = new Metric("ga:pageLoadSample", "Site Speed", "The sample set (or count) of pageviews used to calculate the average page load time.");
+    
+    /// <summary>
+    /// The total amount of time (in milliseconds) spent in DNS lookup for this page among all samples.
+    /// </summary>
+    public static readonly Metric DomainLookupTime = new Metric("ga:domainLookupTime", "Site Speed", "The total amount of time (in milliseconds) spent in DNS lookup for this page among all samples.");
+
+    /// <summary>
+    /// The total amount of time (in milliseconds) to download this page among all samples.
+    /// </summary>
+    public static readonly Metric PageDownloadTime = new Metric("ga:pageDownloadTime", "Site Speed", "The total amount of time (in milliseconds) to download this page among all samples.");
+    
+    /// <summary>
+    /// The total amount of time (in milliseconds) spent in redirects before fetching this page among all samples. If there are no redirects, the value for this metric is expected to be 0.
+    /// </summary>
+    public static readonly Metric RedirectionTime = new Metric("ga:redirectionTime", "Site Speed", "The total amount of time (in milliseconds) spent in redirects before fetching this page among all samples. If there are no redirects, the value for this metric is expected to be 0.");
+
+    /// <summary>
+    /// The total amount of time (in milliseconds) spent in establishing TCP connection for this page among all samples.
+    /// </summary>
+    public static readonly Metric ServerConnectionTime = new Metric("ga:serverConnectionTime", "Site Speed", "The total amount of time (in milliseconds) spent in establishing TCP connection for this page among all samples.");
+
+    /// <summary>
+    /// The total amount of time (in milliseconds) your server takes to respond to a user request among all samples, including the network time from user's location to your server.
+    /// </summary>
+    public static readonly Metric ServerResponseTime = new Metric("ga:serverResponseTime", "Site Speed", "The total amount of time (in milliseconds) your server takes to respond to a user request among all samples, including the network time from user's location to your server.");
+
+    /// <summary>
+    /// The sample set (or count) of pageviews used to calculate the averages for site speed metrics. This metric is used in all site speed average calculations including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.
+    /// </summary>
+    public static readonly Metric SpeedMetricSample = new Metric("ga:speedMetricSample", "Site Speed", "The sample set (or count) of pageviews used to calculate the averages for site speed metrics. This metric is used in all site speed average calculations including avgDomainLookupTime, avgPageDownloadTime, avgRedirectionTime, avgServerConnectionTime, and avgServerResponseTime.");
+
+    /// <summary>
+    /// The time the browser takes (in milliseconds) to parse the document (DOMInteractive), including the network time from the user's location to your server. At this time, the user can interact with the Document Object Model even though it is not fully loaded.
+    /// </summary>
+    public static readonly Metric DomInteractiveTime = new Metric("ga:domInteractiveTime", "Site Speed", "The time the browser takes (in milliseconds) to parse the document (DOMInteractive), including the network time from the user's location to your server. At this time, the user can interact with the Document Object Model even though it is not fully loaded.");
+
+    /// <summary>
+    /// The time the browser takes (in milliseconds) to parse the document and execute deferred and parser-inserted scripts (DOMContentLoaded), including the network time from the user's location to your server. Parsing of the document is finished, the Document Object Model is ready, but referenced style sheets, images, and subframes may not be finished loading. This event is often the starting point for javascript framework execution, e.g., JQuery's onready() callback, etc.
+    /// </summary>
+    public static readonly Metric DomContentLoadedTime = new Metric("ga:domContentLoadedTime", "Site Speed", "The time the browser takes (in milliseconds) to parse the document and execute deferred and parser-inserted scripts (DOMContentLoaded), including the network time from the user's location to your server. Parsing of the document is finished, the Document Object Model is ready, but referenced style sheets, images, and subframes may not be finished loading. This event is often the starting point for javascript framework execution, e.g., JQuery's onready() callback, etc.");
+
+    /// <summary>
+    /// The sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used in the avgDomContentLoadedTime and avgDomInteractiveTime calculations.
+    /// </summary>
+    public static readonly Metric DomLatencyMetricsSample = new Metric("ga:domLatencyMetricsSample", "Site Speed", "The sample set (or count) of pageviews used to calculate the averages for site speed DOM metrics. This metric is used in the avgDomContentLoadedTime and avgDomInteractiveTime calculations.");
+
+    /// <summary>
+    /// The average amount of time (in seconds) it takes for pages from the sample set to load, from initiation of the pageview (e.g. click on a page link) to load completion in the browser.
+    /// </summary>
+    public static readonly Metric AvgPageLoadTime = new Metric("ga:avgPageLoadTime", "Site Speed", "The average amount of time (in seconds) it takes for pages from the sample set to load, from initiation of the pageview (e.g. click on a page link) to load completion in the browser.");
+
+    /// <summary>
+    /// The average amount of time (in seconds) spent in DNS lookup for this page.
+    /// </summary>
+    public static readonly Metric AvgDomainLookupTime = new Metric("ga:avgDomainLookupTime", "Site Speed", "The average amount of time (in seconds) spent in DNS lookup for this page.");
+
+    /// <summary>
+    /// The average amount of time (in seconds) to download this page. 
+    /// </summary>
+
+    /// <summary>
+    /// The average amount of time (in seconds) spent in redirects before fetching this page. If there are no redirects, the value for this metric is expected to be 0.
+    /// </summary>
+    public static readonly Metric AvgRedirectionTime = new Metric("ga:avgRedirectionTime", "Site Speed", "The average amount of time (in seconds) spent in redirects before fetching this page. If there are no redirects, the value for this metric is expected to be 0.");
+
+    /// <summary>
+    /// The average amount of time (in seconds) spent in establishing TCP connection for this page.
+    /// </summary>
+    public static readonly Metric AvgServerConnectionTime = new Metric("ga:avgServerConnectionTime", "Site Speed", "The average amount of time (in seconds) spent in establishing TCP connection for this page.");
+
+    /// <summary>
+    /// The average amount of time (in seconds) your server takes to respond to a user request, including the network time from user's location to your server.
+    /// </summary>
+    public static readonly Metric AvgServerResponseTime = new Metric("ga:avgServerResponseTime", "Site Speed", "The average amount of time (in seconds) your server takes to respond to a user request, including the network time from user's location to your server.");
+
+    /// <summary>
+    /// The average time (in seconds) it takes the browser to parse the document and execute deferred and parser-inserted scripts including the network time from the user's location to your server.
+    /// </summary>
+    public static readonly Metric AvgDomInteractiveTime = new Metric("ga:avgDomInteractiveTime", "Site Speed", "The average time (in seconds) it takes the browser to parse the document and execute deferred and parser-inserted scripts including the network time from the user's location to your server.");
+
+    /// <summary>
+    /// The average time (in seconds) it takes the browser to parse the document.
+    /// </summary>
+    public static readonly Metric AvgDomContentLoadedTime = new Metric("ga:avgDomContentLoadedTime", "Site Speed", "The average time (in seconds) it takes the browser to parse the document.");
+
+    #endregion
+
+    #region App Tracking
+
+    /// <summary>
+    /// The total number of screenviews.
+    /// </summary>
+    public static readonly Metric ScreenViews = new Metric("ga:screenViews", "App Tracking", "The total number of screenviews.");
+
+    /// <summary>
+    /// The number of different (unique) screenviews within a session.
+    /// </summary>
+    public static readonly Metric UniqueScreenViews = new Metric("ga:uniqueScreenViews", "App Tracking", "The number of different (unique) screenviews within a session.");
+
+    /// <summary>
+    /// The time spent viewing the current screen.
+    /// </summary>
+    public static readonly Metric TimeOnScreen = new Metric("ga:timeOnScreen", "App Tracking", "The time spent viewing the current screen.");
+
+    /// <summary>
+    /// The average amount of time users spent on a screen in seconds.
+    /// </summary>
+    public static readonly Metric AvgScreenviewDuration = new Metric("ga:avgScreenviewDuration", "App Tracking", "The average amount of time users spent on a screen in seconds.");
+
+    /// <summary>
+    /// The average number of screenviews per session.
+    /// </summary>
+    public static readonly Metric ScreenviewsPerSession = new Metric("ga:screenviewsPerSession", "App Tracking", "The average number of screenviews per session.");
+
+    #endregion
+
+    #region Event Tracking
+
+    /// <summary>
+    /// The total number of events for the profile, across all categories.
+    /// </summary>
+    public static readonly Metric TotalEvents = new Metric("ga:totalEvents", "Event Tracking", "The total number of events for the profile, across all categories.");
+
+    /// <summary>
+    /// The total number of unique events for the profile, across all categories.
+    /// </summary>
+    public static readonly Metric UniqueEvents = new Metric("ga:uniqueEvents", "Event Tracking", "The total number of unique events for the profile, across all categories.");
+
+    /// <summary>
+    /// The total value of events for the profile.
+    /// </summary>
+    public static readonly Metric EventValue = new Metric("ga:eventValue", "Event Tracking", "The total value of events for the profile.");
+
+    /// <summary>
+    /// The total number of visits with events.
+    /// </summary>
+    public static readonly Metric VisitsWithEvent = new Metric("ga:visitsWithEvent", "Event Tracking", "The total number of visits with events.");
+
+    /// <summary>
+    /// The average value of an event.
+    /// </summary>
+    public static readonly Metric AvgEventValue = new Metric("ga:avgEventValue", "Event Tracking", "The average value of an event.");
+
+    /// <summary>
+    /// The average number of events per visit with event.
+    /// </summary>
+    public static readonly Metric EventsPerVisitWithEvent = new Metric("ga:eventsPerVisitWithEvent", "Event Tracking", "The average number of events per visit with event.");
+
+    #endregion
+
     #endregion
 
     #region Ctor
