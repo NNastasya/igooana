@@ -1,5 +1,4 @@
-﻿using Igooana.Extensions;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Threading.Tasks;
 
@@ -7,6 +6,7 @@ namespace Igooana {
   public class Api : Igooana.IApi {
     private const string baseUrl = "https://www.googleapis.com";
     private const string basePath = "/analytics/v3/data/ga";
+    private static Api current;
     private readonly IConnection connection;
     private readonly IAuth auth;
     private Management management;
@@ -19,6 +19,19 @@ namespace Igooana {
 
     public Api(string clientId, string clientSecret)
       : this(new Connection(), new Auth(clientId, clientSecret)) {
+    }
+
+    //TODO: not sure if this good code at all...
+    /// <summary>
+    /// Returns current API instance if API is authenticated. Throws NullReferenceException when not authenticated
+    /// </summary>
+    public static Api Current {
+      get {
+        if (current == null) {
+          throw new NullReferenceException("Current API instance is not initialized, authenticate to initialize it");
+        }
+        return current;
+      }
     }
 
     public Uri AuthenticateUri {
@@ -48,7 +61,12 @@ namespace Igooana {
         var response = await connection.PostStringAsync(auth.BuildTokenUri(), tokenParams);
         // TODO: move json stuff somewhere else
         token = JObject.Parse(response)["access_token"].ToString();
-        return !String.IsNullOrEmpty(token);
+        if (String.IsNullOrEmpty(token)) {
+          return false;
+        } else {
+          current = this;
+          return true;
+        }
       }
       else return false;
     }
