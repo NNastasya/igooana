@@ -34,13 +34,19 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessRefusedException.cs" />
     <Compile Include="Api.cs" />
     <Compile Include="Auth.cs" />
     <Compile Include="ConnectionException.cs" />
+    <Compile Include="Dimensions\PageTracking.cs" />
+    <Compile Include="Dimensions\Time.cs" />
+    <Compile Include="Dimensions\TrafficSources.cs" />
+    <Compile Include="Dimensions\PlatformOrDevice.cs" />
     <Compile Include="Ensure.cs" />
     <Compile Include="Extensions\JsonExtensions.cs" />
     <Compile Include="Json\Management\JsonResponse.cs" />
@@ -74,7 +80,9 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\portable-net40+sl4+win8+wp71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Metrics\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

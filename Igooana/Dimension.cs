@@ -1,17 +1,24 @@
 ﻿using System;
 using Igooana.Extensions;
+using Igooana.Dimensions;
 
 
 namespace Igooana {
   public class Dimension {
     private readonly string dimensionString;
+    private string category;
+    private string description;
     public static readonly Dimension Empty = new EmptyDimension();
-    public static readonly Dimension Browser = new Dimension("ga:browser");
-    public static readonly Dimension Date = new Dimension("ga:date");
-    public static readonly Dimension PagePath = new Dimension("ga:pagepath");
 
-    protected Dimension(string dimensionString) {
+    public static readonly PageTracking PageTracking = new PageTracking();
+    public static readonly PlatformOrDevice PlatformOrDevice = new PlatformOrDevice();
+    public static readonly Time Time = new Time();
+    public static readonly TrafficSources TrafficSources = new TrafficSources();
+
+    protected internal Dimension(string dimensionString, string category = null, string description = null) {
       this.dimensionString = dimensionString;
+      this.category = category;
+      this.description = description;
     }
 
     public bool IsEmpty {
