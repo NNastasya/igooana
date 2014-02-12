@@ -1,7 +1,5 @@
-﻿namespace Igooana.Metrics
-{
-  public class GoalConversions
-  {
+﻿namespace Igooana.Metrics {
+  public class GoalConversions {
     internal GoalConversions() { }
 
     /// <summary>
@@ -12,18 +10,17 @@
     /// <summary>
     /// The total number of starts for all goals defined for your profile.
     /// </summary>
-    public readonly Metric GoalStartsAll = new Metric("ga:goalStartsAll","Goal conversions",  "The total number of starts for all goals defined for your profile.");
+    public readonly Metric GoalStartsAll = new Metric("ga:goalStartsAll", "Goal conversions", "The total number of starts for all goals defined for your profile.");
 
     /// <summary>
     /// The total number of completions for the requested goal number.
     /// </summary>
-    public readonly Metric GoalXXCompletions = new Metric("ga:goalXXCompletions","Goal conversions",  "The total number of completions for the requested goal number.");
-    
+    public readonly Metric GoalXXCompletions = new Metric("ga:goalXXCompletions", "Goal conversions", "The total number of completions for the requested goal number.");
 
     /// <summary>
     /// The total number of completions for all goals defined for your profile.
     /// </summary>
-    public readonly Metric GoalCompletionsAll = new Metric("ga:goalCompletionsAll","Goal conversions",  "The total number of completions for all goals defined for your profile.");
+    public readonly Metric GoalCompletionsAll = new Metric("ga:goalCompletionsAll", "Goal conversions", "The total number of completions for all goals defined for your profile.");
 
     /// <summary>
     /// The total numeric value for the requested goal number.
@@ -44,7 +41,6 @@
     /// The percentage of visits which resulted in a conversion to the requested goal number.
     /// </summary>
     public readonly Metric GoalXXConversionRate = new Metric("ga:goalXXConversionRate", "Goal conversions", "The percentage of visits which resulted in a conversion to the requested goal number.");
-
 
     /// <summary>
     /// The percentage of visits which resulted in a conversion to at least one of your goals.

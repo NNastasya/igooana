@@ -11,7 +11,7 @@
     /// The sample set (or count) of pageviews used to calculate the average page load time.
     /// </summary>
     public readonly Metric PageLoadSample = new Metric("ga:pageLoadSample", "Site Speed", "The sample set (or count) of pageviews used to calculate the average page load time.");
-    
+
     /// <summary>
     /// The total amount of time (in milliseconds) spent in DNS lookup for this page among all samples.
     /// </summary>
@@ -21,7 +21,7 @@
     /// The total amount of time (in milliseconds) to download this page among all samples.
     /// </summary>
     public readonly Metric PageDownloadTime = new Metric("ga:pageDownloadTime", "Site Speed", "The total amount of time (in milliseconds) to download this page among all samples.");
-    
+
     /// <summary>
     /// The total amount of time (in milliseconds) spent in redirects before fetching this page among all samples. If there are no redirects, the value for this metric is expected to be 0.
     /// </summary>

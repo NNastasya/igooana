@@ -1,7 +1,5 @@
-﻿namespace Igooana.Metrics
-{
-  public class Adwords
-  {
+﻿namespace Igooana.Metrics {
+  public class Adwords {
     internal Adwords() { }
 
     /// <summary>

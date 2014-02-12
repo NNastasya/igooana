@@ -27,8 +27,7 @@ namespace Igooana {
 
     #region Ctor
 
-    protected internal Metric(string metricString, string category = null, string description = null)
-    {
+    protected internal Metric(string metricString, string category = null, string description = null) {
       this.metricString = metricString;
       this.category = category;
       this.description = description;
