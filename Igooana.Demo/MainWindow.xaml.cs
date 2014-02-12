@@ -30,7 +30,7 @@ namespace Igooana.Demo {
 
         var query = Query
           .For(74167085, DateTime.Now.AddDays(-31), DateTime.Now)
-          .WithMetrics(Metric.Visits)
+          .WithMetrics(Metric.Visitor.Visitors)
           .WithDimensions(Dimension.PageTracking.PagePath);
         var result = await api.Execute(query);
       }

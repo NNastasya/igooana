@@ -52,6 +52,16 @@
     <Compile Include="Json\Management\JsonResponse.cs" />
     <Compile Include="Json\JsonResponse.cs" />
     <Compile Include="Json\ResponseColumn.cs" />
+    <Compile Include="Metrics\Adwords.cs" />
+    <Compile Include="Metrics\AppTracking.cs" />
+    <Compile Include="Metrics\EventTracking.cs" />
+    <Compile Include="Metrics\PageTracking.cs" />
+    <Compile Include="Metrics\SiteSpeed.cs" />
+    <Compile Include="Metrics\SocialActivity.cs" />
+    <Compile Include="Metrics\TrafficSources.cs" />
+    <Compile Include="Metrics\GoalConversions.cs" />
+    <Compile Include="Metrics\Session.cs" />
+    <Compile Include="Metrics\Visitor.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Dimension.cs" />
@@ -80,9 +90,7 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\portable-net40+sl4+win8+wp71\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Metrics\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
