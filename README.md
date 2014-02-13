@@ -79,6 +79,13 @@ Using `dynamic` allows you to have a collection of objects with all the properti
 
 Moreover, all properties have their respective CLR types, not strings Google Analytics returns.
 
+#### Potential caveat when using silverlight/windows phone data binding to `result.Values`:
+
+There currently is a bug related to it: http://connect.microsoft.com/VisualStudio/feedback/details/522119/databinding-to-dynamic-objects-is-broken
+
+There are various workarounds listed on that issue page.
+
+
 This is a work in progress, PRs are welcome :)
 
 All code is MIT licensed
